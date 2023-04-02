@@ -109,7 +109,7 @@ package com.yinrj.leetcode.editor.cn;//给你一条个人信息字符串 s ，�
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution831 {
     public String maskPII(String s) {
         if (s.contains("@")) {
             return maskMail(s);
