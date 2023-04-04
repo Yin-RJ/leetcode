@@ -52,7 +52,7 @@ package com.yinrj.leetcode.editor.cn;//有 N 堆石头排成一排，第 i 堆�
 import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution1000 {
     public int mergeStones(int[] stones, int m) {
         final int inf = 0x3f3f3f3f;
 
