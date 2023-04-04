@@ -69,16 +69,14 @@ class Solution {
         }
 
         // 状态数组
-        int[][][] dp = new int[n][n][m + 1];
+        int[][] dp = new int[n][n];
         for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                Arrays.fill(dp[i][j], inf);
-            }
+            Arrays.fill(dp[i], inf);
         }
 
         // 如果已经是1堆了，则不需要合并，成本为0
         for (int i = 0; i < n; ++i) {
-            dp[i][i][1] = 0;
+            dp[i][i] = 0;
         }
 
         // 枚举长度
@@ -87,21 +85,22 @@ class Solution {
             for (int i = 0; i + len - 1 < n; ++i) {
                 // 终点
                 int j = i + len - 1;
-                // 枚举k，我们在划分的时候是区别了最后一堆出来，所以我们当k=1时需要特殊处理
-                for (int k = 2; k <= m; ++k) {
-                    // 枚举最后一个堆的起点，基于优化点2，u可以一次减少m-1
-                    for (int u = j - 1; u >= i; u -= (m - 1)) {
-                        dp[i][j][k] = Math.min(dp[i][j][k], dp[i][u][k - 1] + dp[u + 1][j][1]);
-                    }
+
+                // 枚举最后一个堆的起点，基于优化点2，u可以一次减少m-1
+                for (int u = j - 1; u >= i; u -= (m - 1)) {
+                    dp[i][j] = Math.min(dp[i][j], dp[i][u] + dp[u + 1][j]);
                 }
 
-                // k为1的时候一定是将m堆合并成了1堆
-                dp[i][j][1] = dp[i][j][m] + sum[j + 1] - sum[i];
+
+                // 只有i和j满足条件的时候才能合并成1堆，(j-i+1-k)%(m-1)=0，此时k就是1
+                if ((j - i) % (m - 1) == 0) {
+                    dp[i][j] = dp[i][j] + sum[j + 1] - sum[i];
+                }
             }
         }
 
 
-        return dp[0][n - 1][1];
+        return dp[0][n - 1];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
