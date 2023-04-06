@@ -1,0 +1,59 @@
+package com.yinrj.leetcode.editor.cn;//给你一个整数 n ，以二进制字符串的形式返回该整数的 负二进制（base -2）表示。
+//
+// 注意，除非字符串就是 "0"，否则返回的字符串中不能含有前导零。 
+//
+// 
+//
+// 示例 1： 
+//
+// 
+//输入：n = 2
+//输出："110"
+//解释：(-2)² + (-2)¹ = 2
+// 
+//
+// 示例 2： 
+//
+// 
+//输入：n = 3
+//输出："111"
+//解释：(-2)² + (-2)¹ + (-2)⁰ = 3
+// 
+//
+// 示例 3： 
+//
+// 
+//输入：n = 4
+//输出："100"
+//解释：(-2)² = 4
+// 
+//
+// 
+//
+// 提示： 
+//
+// 
+// 0 <= n <= 10⁹ 
+// 
+//
+// Related Topics 数学 👍 150 👎 0
+
+
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution1017 {
+    public String baseNeg2(int n) {
+        if (n == 0) {
+            return "0";
+        }
+        StringBuilder sb = new StringBuilder();
+        while (n != 0) {
+            // 取模运算的时候，如果n小于0那么就会返回一个负数（可以使用n&1来替代）
+            int r = Math.abs(n % (-2));
+            sb.append(r);
+            n = (n - r) / -2;
+        }
+        return sb.reverse().toString();
+    }
+
+}
+//leetcode submit region end(Prohibit modification and deletion)
