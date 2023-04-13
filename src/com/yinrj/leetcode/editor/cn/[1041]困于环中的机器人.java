@@ -79,7 +79,7 @@ package com.yinrj.leetcode.editor.cn;//在无限的平面上，机器人最初�
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution1041 {
     public boolean isRobotBounded(String instructions) {
         // 只需要考虑起点和终点的位置，如果终点和起点一样那么一定是无法离开的
         // 如果终点和起点不一样，那么只有在终点的时候也是朝向北方，才能离开
