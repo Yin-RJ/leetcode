@@ -58,7 +58,7 @@ package com.yinrj.leetcode.editor.cn;//给定二叉树的根节点 root，找出
  *     }
  * }
  */
-class Solution {
+class Solution1026 {
     public int maxAncestorDiff(TreeNode root) {
         return dfs(root, root.val, root.val);
     }
